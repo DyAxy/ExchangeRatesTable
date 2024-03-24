@@ -31,7 +31,7 @@ try:
     ) as ssh:
         ssh.start()
         mongoClient = pymongo.MongoClient(host='127.0.0.1',port=ssh.local_bind_port)
-        myCol = mongoClient["daily"]["exchange"]
+        myCol = mongoClient["api"]["rate"]
 
         if data['success'] is not True:
             raise Exception("Data Error")
