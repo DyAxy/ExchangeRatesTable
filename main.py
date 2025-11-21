@@ -22,15 +22,9 @@ try:
     with open('data.json', 'w', encoding='utf-8') as file:
         file.write(json.dumps(data))
 
+    uri = os.environ['MONGOURI']
     # Update Data to database
-    with SSHTunnelForwarder(
-        ssh_address_or_host=os.environ['SSHIP'],
-        ssh_username='root',
-        ssh_pkey=paramiko.RSAKey.from_private_key(io.StringIO(os.environ['SSHKEY'])),
-        remote_bind_address= ('127.0.0.1', 27017)
-    ) as ssh:
-        ssh.start()
-        mongoClient = pymongo.MongoClient(host='127.0.0.1',port=ssh.local_bind_port)
+    with pymongo.MongoClient(uri) as mongoClient:
         myCol = mongoClient["api"]["rate"]
 
         if data['success'] is not True:
