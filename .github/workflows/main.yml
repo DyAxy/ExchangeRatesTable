@@ -24,8 +24,7 @@ jobs:
       - name: Update data
         env:
           APIKEY: ${{ secrets.APIKEY }}
-          SSHIP: ${{ secrets.SSHIP }}
-          SSHKEY: ${{ secrets.SSHKEY }}
+          MONGOURI: ${{ secrets.MONGOURI }}
         run: |
           pip install -r requirements.txt
           python main.py
