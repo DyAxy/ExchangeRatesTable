@@ -22,7 +22,7 @@ try:
     with open('data.json', 'w', encoding='utf-8') as file:
         file.write(json.dumps(data))
 
-    uri = os.environ['MONGOURI']
+    uri = os.environ["MONGOURI"]
     # Update Data to database
     with pymongo.MongoClient(uri) as mongoClient:
         myCol = mongoClient["api"]["rate"]
